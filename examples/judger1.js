@@ -1,5 +1,7 @@
 "use strict";
 
+const path = require("path");
+
 require("./pre");
 
 const source = `
@@ -11,12 +13,15 @@ int main()
 }`;
 
 const Judger = require("../");
-const judger = new Judger(source, "c", "input", "output", 1000, 65535);
+const judger = new Judger(source, "c", "input", path.resolve(__dirname, "middle/stdout"), 1000, 65535);
 
 judger.compile(function(err, ret) {
     console.log(err, ret);
 
-    judger.clean(function(err) {
-        console.log(err);
+    judger.judge(function(err, res) {
+        console.log(err, res);
+        judger.clean(function(err) {
+            console.log(err);
+        });
     });
 });
