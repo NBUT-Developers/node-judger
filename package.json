@@ -25,7 +25,7 @@
   "dependencies": {
     "async": "^2.1.4",
     "fs-extra": "^2.0.0",
-    "judger-core": "^1.0.6",
+    "judger-core": "^1.1.1",
     "nan": "^2.5.1",
     "uuid": "^3.0.1"
   }

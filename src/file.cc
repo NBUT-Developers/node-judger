@@ -20,7 +20,7 @@ public:
     {
         FILE *file_std = fopen(_std.c_str(), "r");
         FILE *file_output = fopen(output.c_str(), "r");
-
+        
         if(file_std == NULL || file_output == NULL)
         {
             strcpy(result, "No output file or no std output file.");
