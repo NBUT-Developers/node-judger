@@ -7,16 +7,30 @@ require("./pre");
 const source = `
 #include <stdio.h>
 
-int main()
+void main()
 {
-
+    int a, b;
+    while(~scanf("%d%d", &a, &b))
+    {
+        printf("%d\\n", a + b);
+    }
 }`;
 
 const Judger = require("../");
-const judger = new Judger(source, "c", "input", path.resolve(__dirname, "middle/stdout"), 1000, 65535);
+const judger = new Judger(source, "c", path.resolve(__dirname, "middle/stdin"), path.resolve(__dirname, "middle/stdout"), 1000, 65535);
 
 judger.compile(function(err, ret) {
-    console.log(err, ret);
+    if(err) {
+        return judger.clean(function() {
+            console.log(err);
+        });
+    }
+
+    if(ret.state === Judger.ResultState.COMPILATION_ERROR) {
+        return judger.clean(function() {
+            console.log("Compile failed:", ret.message);
+        });
+    }
 
     judger.judge(function(err, res) {
         console.log(err, res);

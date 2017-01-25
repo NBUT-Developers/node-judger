@@ -16,3 +16,5 @@ Judger.setCPPCompilerOptions = cpp.setCompilerAdditionalOptions.bind(cpp);
 const pascal = require("./lib/compiler/pascal");
 Judger.setPascalCompilerPath = pascal.setCompilerPath.bind(pascal);
 Judger.setPascalCompilerOptions = pascal.setCompilerAdditionalOptions.bind(pascal);
+
+Judger.ResultState = require("./lib/result");
